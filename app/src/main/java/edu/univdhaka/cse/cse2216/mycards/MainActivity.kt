@@ -20,6 +20,6 @@ class MainActivity : Activity() {
 
         listsRecyclerView = findViewById(R.id.card_list)
         listsRecyclerView.layoutManager = LinearLayoutManager(this)
-        listsRecyclerView.adapter = CardListAdapter(cards)
+        listsRecyclerView.adapter = CardListAdapter(cards, this)
     }
 }
