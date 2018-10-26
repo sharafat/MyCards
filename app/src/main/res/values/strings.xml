@@ -7,10 +7,17 @@
     <string name="expiry_date">Expiry Date</string>
     <string name="cvv">CVV</string>
     <string name="add_card">Add Card</string>
+    <string name="edit_card">Edit Card</string>
+    <string name="remove_card">Remove Card</string>
     <string name="save">Save</string>
     <string name="card_details">Card Details</string>
     <string name="required">Please enter a value</string>
     <string name="card_add_success">Card added successfully.</string>
+    <string name="card_delete_success">Card deleted.</string>
+    <string name="delete_card_confirmation_title">Delete Card?</string>
+    <string name="delete_card_confirmation_message">Are you sure you want to delete this card?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
 
     <string-array name="card_types">
         <item>VISA</item>

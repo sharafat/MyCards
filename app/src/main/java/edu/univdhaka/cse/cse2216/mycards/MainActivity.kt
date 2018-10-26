@@ -35,7 +35,7 @@ class MainActivity : Activity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_add -> {
-                startActivity(Intent(this, AddCardActivity::class.java))
+                startActivity(Intent(this, AddEditCardActivity::class.java))
                 true
             }
             else -> super.onOptionsItemSelected(item)

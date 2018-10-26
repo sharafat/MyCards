@@ -1,8 +1,14 @@
 package edu.univdhaka.cse.cse2216.mycards
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.TextView
+import android.widget.Toast
 
 class CardDetailsActivity: Activity() {
 
@@ -45,5 +51,48 @@ class CardDetailsActivity: Activity() {
         cardholderNameLabel.text = card.cardholderName
         expiryDateLabel.text = card.expiryDate
         cvvLabel.text = card.cvv.toString()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_card_details, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_edit -> {
+                onEdit()
+                true
+            }
+            R.id.action_delete -> {
+                onDelete()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun onEdit() {
+        startActivity(Intent(this, AddEditCardActivity::class.java).putExtra("card", card))
+    }
+
+    private fun onDelete() {
+        AlertDialog.Builder(this)
+                .setTitle(R.string.delete_card_confirmation_title)
+                .setMessage(R.string.delete_card_confirmation_message)
+                .setPositiveButton(R.string.delete){ _, _ -> deleteCard() }
+                .setNegativeButton(R.string.cancel){ _, _ -> }
+                .create()
+                .show()
+    }
+
+    private fun deleteCard() {
+        Log.d(getString(R.string.app_name), "Delete card: " + card.toString())
+
+        // TODO: delete card from database/server
+
+        Toast.makeText(this, R.string.card_delete_success, Toast.LENGTH_SHORT).show()
+
+        finish()
     }
 }
