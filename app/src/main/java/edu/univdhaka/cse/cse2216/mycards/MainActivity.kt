@@ -5,9 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import kotlinx.android.synthetic.main.cards_row.view.*
 
 class MainActivity : Activity() {
@@ -26,6 +24,21 @@ class MainActivity : Activity() {
         listsRecyclerView = findViewById(R.id.card_list)
         listsRecyclerView.layoutManager = LinearLayoutManager(this)
         listsRecyclerView.adapter = CardListAdapter(cards)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_add -> {
+                startActivity(Intent(this, AddCardActivity::class.java))
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
 
