@@ -1,9 +1,14 @@
 package edu.univdhaka.cse.cse2216.mycards
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import kotlinx.android.synthetic.main.cards_row.view.*
 
 class MainActivity : Activity() {
 
@@ -20,6 +25,38 @@ class MainActivity : Activity() {
 
         listsRecyclerView = findViewById(R.id.card_list)
         listsRecyclerView.layoutManager = LinearLayoutManager(this)
-        listsRecyclerView.adapter = CardListAdapter(cards, this)
+        listsRecyclerView.adapter = CardListAdapter(cards)
+    }
+
+
+    inner class CardListAdapter(private val cards : ArrayList<Card>) : RecyclerView.Adapter<CardListItemViewHolder>() {
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardListItemViewHolder {
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.cards_row, parent, false)
+
+            return CardListItemViewHolder(view)
+        }
+
+        override fun getItemCount(): Int {
+            return cards.size
+        }
+
+        override fun onBindViewHolder(holder: CardListItemViewHolder, position: Int) {
+            val card = cards[position]
+
+            holder.cardNumber.text = card.number
+            holder.cardType.text = card.type
+
+            holder.itemView.setOnClickListener {
+                startActivity(Intent(applicationContext, CardDetailsActivity::class.java).putExtra("card", card))
+            }
+        }
+    }
+
+
+    class CardListItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
+        val cardNumber = view.card_number
+        val cardType = view.card_type
     }
 }

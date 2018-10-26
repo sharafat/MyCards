@@ -4,7 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.widget.TextView
 
-class CardDetails: Activity() {
+class CardDetailsActivity: Activity() {
 
     lateinit var card: Card
 
