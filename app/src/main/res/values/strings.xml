@@ -1,6 +1,20 @@
 <resources>
     <string name="app_name">My Cards</string>
-    <string name="card_number">Card Number:</string>
-    <string name="card_type">Card Type:</string>
-    <string name="add">Add</string>
+    <string name="card_issuing_bank_name">Card Issuing Bank Name</string>
+    <string name="card_number">Card Number</string>
+    <string name="card_type">Card Type</string>
+    <string name="cardholder_name">Cardholder Name</string>
+    <string name="expiry_date">Expiry Date</string>
+    <string name="cvv">CVV</string>
+    <string name="add_card">Add Card</string>
+    <string name="save">Save</string>
+    <string name="required">Please enter a value</string>
+    <string name="card_add_success">Card added successfully.</string>
+
+    <string-array name="card_types">
+        <item>VISA</item>
+        <item>Master</item>
+        <item>American Express</item>
+        <item>Diners Club</item>
+    </string-array>
 </resources>

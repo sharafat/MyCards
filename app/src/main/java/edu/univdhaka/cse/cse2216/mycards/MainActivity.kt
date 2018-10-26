@@ -17,9 +17,10 @@ class MainActivity : Activity() {
         setContentView(R.layout.activity_main)
 
         val cards: ArrayList<Card> = ArrayList();
-        cards.add(Card("1234 5678 9101 1123", "VISA"))
-        cards.add(Card("1092 1234 4485 2342", "Master"))
-        cards.add(Card("4608 123456 7890", "DCI"))
+        cards.add(Card("VISA", "Standard Chartered Bank Ltd.", "1234 5678 9101 1123", "SHARAFAT MOSHARRAF", "12/21", 123))
+        cards.add(Card("Master", "Eastern Bank Ltd.", "1092 1234 4485 2342", "SHARAFAT MOSHARRAF", "01/20", 456))
+        cards.add(Card("Diners Club", "Eastern Bank Ltd.", "4608 123456 7890", "SHARAFAT MOSHARRAF", "08/19", 789))
+        cards.add(Card("American Express", "City Bank Ltd.", "1234 567890 3942", "SHARAFAT MOSHARRAF", "12/18", 101))
 
         listsRecyclerView = findViewById(R.id.card_list)
         listsRecyclerView.layoutManager = LinearLayoutManager(this)
