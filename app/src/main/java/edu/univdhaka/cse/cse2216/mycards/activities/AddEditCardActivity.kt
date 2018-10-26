@@ -1,4 +1,4 @@
-package edu.univdhaka.cse.cse2216.mycards
+package edu.univdhaka.cse.cse2216.mycards.activities
 
 import android.app.Activity
 import android.os.Bundle
@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
+import edu.univdhaka.cse.cse2216.mycards.R
+import edu.univdhaka.cse.cse2216.mycards.domains.Card
 
 class AddEditCardActivity : Activity() {
 
@@ -24,7 +26,7 @@ class AddEditCardActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_add_card)
+        setContentView(R.layout.activity_card_add)
 
         bindWidgets()
 
@@ -54,7 +56,7 @@ class AddEditCardActivity : Activity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_add_card, menu)
+        menuInflater.inflate(R.menu.menu_card_add, menu)
         return true
     }
 
@@ -108,7 +110,7 @@ class AddEditCardActivity : Activity() {
 
         // TODO: save card to database/server
 
-        Toast.makeText(this, R.string.card_add_success, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, R.string.card_save_success, Toast.LENGTH_SHORT).show()
 
         finish()
     }
