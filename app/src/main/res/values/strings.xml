@@ -8,6 +8,7 @@
     <string name="cvv">CVV</string>
     <string name="add_card">Add Card</string>
     <string name="save">Save</string>
+    <string name="card_details">Card Details</string>
     <string name="required">Please enter a value</string>
     <string name="card_add_success">Card added successfully.</string>
 
