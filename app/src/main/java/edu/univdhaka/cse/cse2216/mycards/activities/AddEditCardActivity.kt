@@ -26,7 +26,7 @@ class AddEditCardActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_card_add)
+        setContentView(R.layout.activity_card_add_edit)
 
         bindWidgets()
 
@@ -56,7 +56,7 @@ class AddEditCardActivity : Activity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_card_add, menu)
+        menuInflater.inflate(R.menu.menu_card_add_edit, menu)
         return true
     }
 
