@@ -20,9 +20,9 @@
     <string name="cancel">Cancel</string>
 
     <string-array name="card_types">
-        <item>VISA</item>
+        <item>Visa</item>
         <item>Master</item>
         <item>American Express</item>
-        <item>Diners Club</item>
+        <item>Discover</item>
     </string-array>
 </resources>
