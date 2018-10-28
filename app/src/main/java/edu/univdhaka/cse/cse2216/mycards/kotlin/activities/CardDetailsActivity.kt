@@ -1,4 +1,4 @@
-package edu.univdhaka.cse.cse2216.mycards.activities
+package edu.univdhaka.cse.cse2216.mycards.kotlin.activities
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -9,8 +9,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
-import edu.univdhaka.cse.cse2216.mycards.domains.Card
 import edu.univdhaka.cse.cse2216.mycards.R
+import edu.univdhaka.cse.cse2216.mycards.kotlin.domains.Card
 
 class CardDetailsActivity: Activity() {
 

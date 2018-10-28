@@ -11,17 +11,29 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".activities.CardListActivity">
+        <!-- Kotlin activities -->
+        <activity android:name=".kotlin.activities.CardListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
+                <!--<category android:name="android.intent.category.DEFAULT"/>-->
             </intent-filter>
         </activity>
+        <activity android:name=".kotlin.activities.CardDetailsActivity"/>
+        <activity android:name=".kotlin.activities.AddEditCardActivity"/>
 
-        <activity android:name=".activities.CardDetailsActivity"/>
+        <!-- Java activities -->
+        <activity android:name=".java.activities.CardListActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
-        <activity android:name=".activities.AddEditCardActivity"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".java.activities.AddEditCardActivity"/>
+        <activity android:name=".java.activities.CardDetailsActivity"/>
 
     </application>
 

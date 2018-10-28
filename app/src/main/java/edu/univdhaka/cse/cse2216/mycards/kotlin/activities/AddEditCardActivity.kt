@@ -1,4 +1,4 @@
-package edu.univdhaka.cse.cse2216.mycards.activities
+package edu.univdhaka.cse.cse2216.mycards.kotlin.activities
 
 import android.app.Activity
 import android.os.Bundle
@@ -10,7 +10,7 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import edu.univdhaka.cse.cse2216.mycards.R
-import edu.univdhaka.cse.cse2216.mycards.domains.Card
+import edu.univdhaka.cse.cse2216.mycards.kotlin.domains.Card
 
 class AddEditCardActivity : Activity() {
 

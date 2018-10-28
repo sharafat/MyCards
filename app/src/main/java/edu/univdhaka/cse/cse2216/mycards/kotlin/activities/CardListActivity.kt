@@ -1,4 +1,4 @@
-package edu.univdhaka.cse.cse2216.mycards.activities
+package edu.univdhaka.cse.cse2216.mycards.kotlin.activities
 
 import android.app.Activity
 import android.content.Intent
@@ -9,14 +9,12 @@ import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
 import edu.univdhaka.cse.cse2216.mycards.R
-import edu.univdhaka.cse.cse2216.mycards.domains.Card
+import edu.univdhaka.cse.cse2216.mycards.kotlin.domains.Card
 import kotlinx.android.synthetic.main.row_card_list.view.*
 
 class CardListActivity : Activity() {
 
     private var cards = ArrayList<Card>()
-
-    private lateinit var listsRecyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,9 +34,9 @@ class CardListActivity : Activity() {
     }
 
     private fun prepareListView() {
-        listsRecyclerView = findViewById(R.id.card_list)
-        listsRecyclerView.layoutManager = LinearLayoutManager(this)
-        listsRecyclerView.adapter = CardListAdapter(cards)
+        val cardsRecyclerView: RecyclerView = findViewById(R.id.card_list)
+        cardsRecyclerView.layoutManager = LinearLayoutManager(this)
+        cardsRecyclerView.adapter = CardListAdapter(cards)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -59,14 +57,14 @@ class CardListActivity : Activity() {
 
     inner class CardListAdapter(private val cards : ArrayList<Card>) : RecyclerView.Adapter<CardListItemViewHolder>() {
 
+        override fun getItemCount(): Int {
+            return cards.size
+        }
+
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardListItemViewHolder {
             val view = LayoutInflater.from(parent.context).inflate(R.layout.row_card_list, parent, false)
 
             return CardListItemViewHolder(view)
-        }
-
-        override fun getItemCount(): Int {
-            return cards.size
         }
 
         override fun onBindViewHolder(holder: CardListItemViewHolder, position: Int) {

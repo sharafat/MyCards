@@ -1,4 +1,4 @@
-package edu.univdhaka.cse.cse2216.mycards.domains
+package edu.univdhaka.cse.cse2216.mycards.kotlin.domains
 
 import java.io.Serializable
 
