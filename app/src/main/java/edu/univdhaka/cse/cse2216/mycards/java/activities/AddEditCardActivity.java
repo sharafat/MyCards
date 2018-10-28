@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import edu.univdhaka.cse.cse2216.mycards.R;
 import edu.univdhaka.cse.cse2216.mycards.java.domain.Card;
+import edu.univdhaka.cse.cse2216.mycards.java.service.CardService;
 
 public class AddEditCardActivity extends Activity {
 
@@ -122,7 +123,20 @@ public class AddEditCardActivity extends Activity {
     private void saveCard(Card card) {
         Log.d(getString(R.string.app_name), "New card added: " + card.toString());
 
-        // TODO: save card to database/server
+        CardService cardService = new CardService(this);
+        if (this.card == null) {
+            cardService.addCard(card);
+        } else {
+            // replace old values of card fields with new values
+            this.card.setType(card.getType());
+            this.card.setBankName(card.getBankName());
+            this.card.setNumber(card.getNumber());
+            this.card.setCardholderName(card.getCardholderName());
+            this.card.setExpiryDate(card.getExpiryDate());
+            this.card.setCvv(card.getCvv());
+
+            cardService.updateCard(this.card);
+        }
 
         Toast.makeText(this, R.string.card_save_success, Toast.LENGTH_SHORT).show();
 

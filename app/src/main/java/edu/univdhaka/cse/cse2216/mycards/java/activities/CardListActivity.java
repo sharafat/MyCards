@@ -19,10 +19,13 @@ import java.util.List;
 
 import edu.univdhaka.cse.cse2216.mycards.R;
 import edu.univdhaka.cse.cse2216.mycards.java.domain.Card;
+import edu.univdhaka.cse.cse2216.mycards.java.service.CardService;
 
 public class CardListActivity extends Activity {
 
     private List<Card> cards = new ArrayList<>();
+
+    private RecyclerView cardsRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,21 +33,30 @@ public class CardListActivity extends Activity {
 
         setContentView(R.layout.activity_card_list);
 
-        retrieveCards();
-
         prepareListView();
     }
 
+    @SuppressWarnings("ConstantConditions")
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        retrieveCards();
+    }
+
+    @SuppressWarnings("ConstantConditions")
     private void retrieveCards() {
-        // TODO: fetch card list from database/server
-        cards.add(new Card("Visa", "Standard Chartered Bank Ltd.", "1234 5678 9101 1123", "SHARAFAT MOSHARRAF", "12/21", 123));
-        cards.add(new Card("Master", "Eastern Bank Ltd.", "1092 1234 4485 2342", "SHARAFAT MOSHARRAF", "01/20", 456));
-        cards.add(new Card("Discover", "Eastern Bank Ltd.", "4608 123456 7890", "SHARAFAT MOSHARRAF", "08/19", 789));
-        cards.add(new Card("American Express", "City Bank Ltd.", "1234 567890 3942", "SHARAFAT MOSHARRAF", "12/18", 101));
+
+        CardService cardService = new CardService(this);
+        cards = cardService.listCards();
+
+        CardListAdapter adapter = (CardListAdapter) cardsRecyclerView.getAdapter();
+        adapter.setCards(cards);
+        adapter.notifyDataSetChanged();
     }
 
     private void prepareListView() {
-        RecyclerView cardsRecyclerView = findViewById(R.id.card_list);
+        cardsRecyclerView = findViewById(R.id.card_list);
         cardsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         cardsRecyclerView.setAdapter(new CardListAdapter(cards));
     }
@@ -72,6 +84,10 @@ public class CardListActivity extends Activity {
         private List<Card> cards;
 
         CardListAdapter(List<Card> cards) {
+            this.cards = cards;
+        }
+
+        public void setCards(List<Card> cards) {
             this.cards = cards;
         }
 

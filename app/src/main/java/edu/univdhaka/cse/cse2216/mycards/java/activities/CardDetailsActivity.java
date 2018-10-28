@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import edu.univdhaka.cse.cse2216.mycards.R;
 import edu.univdhaka.cse.cse2216.mycards.java.domain.Card;
+import edu.univdhaka.cse.cse2216.mycards.java.service.CardService;
 
 public class CardDetailsActivity extends Activity {
 
@@ -109,7 +110,8 @@ public class CardDetailsActivity extends Activity {
     private void deleteCard() {
         Log.d(getString(R.string.app_name), "Delete card: " + card.toString());
 
-        // TODO: delete card from database/server
+        CardService cardService = new CardService(this);
+        cardService.deleteCard(card);
 
         Toast.makeText(this, R.string.card_delete_success, Toast.LENGTH_SHORT).show();
 

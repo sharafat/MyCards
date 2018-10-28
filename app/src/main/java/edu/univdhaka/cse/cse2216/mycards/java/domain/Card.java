@@ -5,6 +5,7 @@ import java.util.Objects;
 
 public class Card implements Serializable {
 
+    private int id;
     private String type;
     private String bankName;
     private String number;
@@ -12,13 +13,22 @@ public class Card implements Serializable {
     private String expiryDate;
     private int cvv;
 
-    public Card(String type, String bankName, String number, String cardholderName, String expiryDate, int cvv) {
+    public Card(String type, String bankName, String number, String cardholderName, String expiryDate, int cvv, int id) {
         this.type = type;
         this.bankName = bankName;
         this.number = number;
         this.cardholderName = cardholderName;
         this.expiryDate = expiryDate;
         this.cvv = cvv;
+        this.id = id;
+    }
+
+    public Card(String type, String bankName, String number, String cardholderName, String expiryDate, int cvv) {
+        this(type, bankName, number, cardholderName, expiryDate, cvv, 0);
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getType() {
@@ -74,7 +84,8 @@ public class Card implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Card card = (Card) o;
-        return cvv == card.cvv &&
+        return id == card.id &&
+                cvv == card.cvv &&
                 Objects.equals(type, card.type) &&
                 Objects.equals(bankName, card.bankName) &&
                 Objects.equals(number, card.number) &&
@@ -84,13 +95,14 @@ public class Card implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(type, bankName, number, cardholderName, expiryDate, cvv);
+        return Objects.hash(id, type, bankName, number, cardholderName, expiryDate, cvv);
     }
 
     @Override
     public String toString() {
         return "Card{" +
-                "type='" + type + '\'' +
+                "id=" + id +
+                ", type='" + type + '\'' +
                 ", bankName='" + bankName + '\'' +
                 ", number='" + number + '\'' +
                 ", cardholderName='" + cardholderName + '\'' +
