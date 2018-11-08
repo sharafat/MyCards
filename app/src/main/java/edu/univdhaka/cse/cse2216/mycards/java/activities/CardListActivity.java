@@ -19,6 +19,7 @@ import java.util.List;
 
 import edu.univdhaka.cse.cse2216.mycards.R;
 import edu.univdhaka.cse.cse2216.mycards.java.domain.Card;
+import edu.univdhaka.cse.cse2216.mycards.java.repository.CardRepository;
 import edu.univdhaka.cse.cse2216.mycards.java.service.CardService;
 
 public class CardListActivity extends Activity {
@@ -48,11 +49,16 @@ public class CardListActivity extends Activity {
     private void retrieveCards() {
 
         CardService cardService = new CardService(this);
-        cards = cardService.listCards();
+        cardService.listCardsAsync(new CardRepository.OnResultListener<List<Card>>() {
+            @Override
+            public void onResult(List<Card> data) {
+                cards = data;
 
-        CardListAdapter adapter = (CardListAdapter) cardsRecyclerView.getAdapter();
-        adapter.setCards(cards);
-        adapter.notifyDataSetChanged();
+                CardListAdapter adapter = (CardListAdapter) cardsRecyclerView.getAdapter();
+                adapter.setCards(cards);
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 
     private void prepareListView() {

@@ -46,6 +46,11 @@ public class DatabaseCardRepository implements CardRepository {
     }
 
     @Override
+    public void listCardsAsync(OnResultListener<List<Card>> resultListener) {
+        resultListener.onResult(listCards());
+    }
+
+    @Override
     public void addCard(Card card) {
         ContentValues values = getContentValues(card);
 

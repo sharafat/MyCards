@@ -8,10 +8,18 @@ public interface CardRepository {
 
     List<Card> listCards();
 
+    void listCardsAsync(OnResultListener<List<Card>> resultListener);
+
     void addCard(Card card);
 
     void updateCard(Card card);
 
     void deleteCard(Card card);
 
+
+    interface OnResultListener<T> {
+
+        void onResult(T data);
+
+    }
 }

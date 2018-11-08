@@ -13,6 +13,10 @@ public class Card implements Serializable {
     private String expiryDate;
     private int cvv;
 
+    public Card() {
+        // No-argument constructor required for deserialization by Firebase
+    }
+
     public Card(String type, String bankName, String number, String cardholderName, String expiryDate, int cvv, int id) {
         this.type = type;
         this.bankName = bankName;
