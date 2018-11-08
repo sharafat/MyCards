@@ -10,7 +10,8 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import edu.univdhaka.cse.cse2216.mycards.R
-import edu.univdhaka.cse.cse2216.mycards.kotlin.domains.Card
+import edu.univdhaka.cse.cse2216.mycards.kotlin.domain.Card
+import edu.univdhaka.cse.cse2216.mycards.kotlin.service.CardService
 
 class AddEditCardActivity : Activity() {
 
@@ -108,7 +109,20 @@ class AddEditCardActivity : Activity() {
     private fun saveCard(card: Card) {
         Log.d(getString(R.string.app_name), "New card added: " + card.toString())
 
-        // TODO: save card to database/server
+        val cardService = CardService(this)
+        if (this.card == null) {
+            cardService.addCard(card)
+        } else {
+            // replace old values of card fields with new values
+            this.card!!.type = card.type
+            this.card!!.bankName = card.bankName
+            this.card!!.number = card.number
+            this.card!!.cardholderName = card.cardholderName
+            this.card!!.expiryDate = card.expiryDate
+            this.card!!.cvv = card.cvv
+
+            cardService.updateCard(this.card!!)
+        }
 
         Toast.makeText(this, R.string.card_save_success, Toast.LENGTH_SHORT).show()
 

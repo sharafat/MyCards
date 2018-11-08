@@ -9,32 +9,45 @@ import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
 import edu.univdhaka.cse.cse2216.mycards.R
-import edu.univdhaka.cse.cse2216.mycards.kotlin.domains.Card
+import edu.univdhaka.cse.cse2216.mycards.kotlin.domain.Card
+import edu.univdhaka.cse.cse2216.mycards.kotlin.service.CardService
 import kotlinx.android.synthetic.main.row_card_list.view.*
+
+
 
 class CardListActivity : Activity() {
 
     private var cards = ArrayList<Card>()
 
+    private lateinit var cardsRecyclerView: RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_card_list)
 
-        retrieveCards()
+        setContentView(R.layout.activity_card_list)
 
         prepareListView()
     }
 
+    override fun onStart() {
+        super.onStart()
+
+        retrieveCards()
+    }
+
     private fun retrieveCards() {
-        // TODO: fetch card list from database/server
-        cards.add(Card("Visa", "Standard Chartered Bank Ltd.", "1234 5678 9101 1123", "SHARAFAT MOSHARRAF", "12/21", 123))
-        cards.add(Card("Master", "Eastern Bank Ltd.", "1092 1234 4485 2342", "SHARAFAT MOSHARRAF", "01/20", 456))
-        cards.add(Card("Discover", "Eastern Bank Ltd.", "4608 123456 7890", "SHARAFAT MOSHARRAF", "08/19", 789))
-        cards.add(Card("American Express", "City Bank Ltd.", "1234 567890 3942", "SHARAFAT MOSHARRAF", "12/18", 101))
+        val cardService = CardService(this)
+        cardService.listCardsAsync {
+            cards = it as ArrayList<Card>
+
+            val adapter = cardsRecyclerView.adapter as CardListAdapter
+            adapter.cards = cards
+            adapter.notifyDataSetChanged()
+        }
     }
 
     private fun prepareListView() {
-        val cardsRecyclerView: RecyclerView = findViewById(R.id.card_list)
+        cardsRecyclerView = findViewById(R.id.card_list)
         cardsRecyclerView.layoutManager = LinearLayoutManager(this)
         cardsRecyclerView.adapter = CardListAdapter(cards)
     }
@@ -55,7 +68,7 @@ class CardListActivity : Activity() {
     }
 
 
-    inner class CardListAdapter(private val cards : ArrayList<Card>) : RecyclerView.Adapter<CardListItemViewHolder>() {
+    inner class CardListAdapter(var cards : ArrayList<Card>) : RecyclerView.Adapter<CardListItemViewHolder>() {
 
         override fun getItemCount(): Int {
             return cards.size

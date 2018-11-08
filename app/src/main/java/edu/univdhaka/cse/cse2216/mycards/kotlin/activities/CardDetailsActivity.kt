@@ -10,7 +10,8 @@ import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
 import edu.univdhaka.cse.cse2216.mycards.R
-import edu.univdhaka.cse.cse2216.mycards.kotlin.domains.Card
+import edu.univdhaka.cse.cse2216.mycards.kotlin.service.CardService
+import edu.univdhaka.cse.cse2216.mycards.kotlin.domain.Card
 
 class CardDetailsActivity: Activity() {
 
@@ -91,7 +92,8 @@ class CardDetailsActivity: Activity() {
     private fun deleteCard() {
         Log.d(getString(R.string.app_name), "Delete card: " + card.toString())
 
-        // TODO: delete card from database/server
+        val cardService = CardService(this)
+        cardService.deleteCard(card)
 
         Toast.makeText(this, R.string.card_delete_success, Toast.LENGTH_SHORT).show()
 
